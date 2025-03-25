@@ -1,0 +1,41 @@
+﻿<Window x:Class="ShipGame.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ShipGame"
+        mc:Ignorable="d"
+        Title="Ship Game" Height="498" Width="800">
+    <Grid>
+        <Canvas Name="GameCanvas" Background="LightBlue">
+            <!-- Predefined Ship Paths -->
+            <Path Stroke="Red" StrokeThickness="2">
+                <Path.Data>
+                    <PathGeometry>
+                        <PathFigure StartPoint="100,100">
+                            <BezierSegment Point1="300,200" Point2="500,50" Point3="700,100"/>
+                        </PathFigure>
+                    </PathGeometry>
+                </Path.Data>
+            </Path>
+            <Path Stroke="Red" StrokeThickness="2">
+                <Path.Data>
+                    <PathGeometry>
+                        <PathFigure StartPoint="100,250">
+                            <BezierSegment Point1="400,200" Point2="500,150" Point3="700,250"/>
+                        </PathFigure>
+                    </PathGeometry>
+                </Path.Data>
+            </Path>
+            <Path Stroke="Red" StrokeThickness="2">
+                <Path.Data>
+                    <PathGeometry>
+                        <PathFigure StartPoint="100,400">
+                            <BezierSegment Point1="400,200" Point2="500,450" Point3="700,400"/>
+                        </PathFigure>
+                    </PathGeometry>
+                </Path.Data>
+            </Path>
+        </Canvas>
+    </Grid>
+</Window>
