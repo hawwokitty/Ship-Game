@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,6 +27,7 @@ namespace ShipGame
         private DispatcherTimer gameTimer;
         private double t = 0;
         private int offset = 10;
+        //private List<BezierPath> shipPaths = new List<BezierPath>();
         public MainWindow()
         {
             InitializeComponent();
@@ -36,8 +38,11 @@ namespace ShipGame
         {
             // Create and add ships
             CargoShip ship1 = new CargoShip(2, Brushes.Yellow, 20, 100, 100, 700, 100);
+            CargoShip ship2 = new CargoShip(2, Brushes.Yellow, 20, 100, 250, 700, 250);
             ships.Add(ship1);
+            ships.Add(ship2);
             GameCanvas.Children.Add(ship1.Shape);
+            GameCanvas.Children.Add(ship2.Shape);
 
             // Timer for ship movement
             gameTimer = new DispatcherTimer();
@@ -51,28 +56,38 @@ namespace ShipGame
 
             foreach (var ship in ships)
             {
-                // Expected point on the correct path
-                Point nextPoint = BezierCurve(t, new Point(100-offset, 100 - offset), new Point(300 - offset, 200 - offset), new Point(500 - offset, 50 - offset), new Point(700 - offset, 100 - offset));
+                // Calculate the expected point on the correct Bezier curve path
+                Point nextPoint = BezierCurve(t,
+                    new Point(100 - offset, 100 - offset),
+                    new Point(300 - offset, 200 - offset),
+                    new Point(500 - offset, 50 - offset),
+                    new Point(700 - offset, 100 - offset));
 
-                if (random.Next(100) > 90)
+                // If the ship hasn't started drifting yet, roll the chance to start drifting
+                if (!ship.HasStartedDrifting && random.Next(100) < 10) // % chance to start drifting
                 {
-                    ship.DriftFurther();
+                    ship.HasStartedDrifting = true; // Mark it as drifting
                 }
 
-                // If the ship is off course, make it drift more
-                if (ship.IsOffCourse(20, nextPoint.Y)) // 20-pixel margin for deviation
+                // If the ship has started drifting, it keeps drifting further off course
+                if (ship.HasStartedDrifting)
                 {
-                    ship.DriftFurther(); // Make the ship drift even more
-                    ship.MoveTo(nextPoint.X, ship.GetDriftedY()); // Move it even further off course
+                    ship.DriftFurther(); // Make it drift up or down by 1 pixel
+                    ship.MoveTo(nextPoint.X, ship.GetDriftedY());
                 }
                 else
                 {
                     ship.MoveTo(nextPoint.X, nextPoint.Y);
                 }
+
+                // Update current position
+                ship.CurrentX = nextPoint.X;
+                ship.CurrentY = nextPoint.Y;
             }
 
-            t += 0.005;
+            t += 0.0005; // Advance along the Bezier curve
         }
+
 
 
         private Point BezierCurve(double t, Point p0, Point p1, Point p2, Point p3)

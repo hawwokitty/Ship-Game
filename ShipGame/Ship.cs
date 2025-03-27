@@ -16,12 +16,13 @@ namespace ShipGame
         public double StartX, StartY, EndX, EndY;
         public double CurrentX, CurrentY;
         public double DriftAmount = 0;
+        public bool HasStartedDrifting { get; set; } = false; 
         public abstract double FuelConsumption { get; }
         public Random Random = new Random();
 
         public Ellipse Shape { get; private set; }
 
-        public Ship(int speed, Brush color, double size, double startX, double startY, double endX, double endY)
+        public Ship(double speed, Brush color, double size, double startX, double startY, double endX, double endY)
         {
             Speed = speed;
             StartX = startX;
@@ -44,24 +45,19 @@ namespace ShipGame
         {
             Canvas.SetLeft(Shape, x);
             Canvas.SetTop(Shape, y);
+            CurrentX = x;
+            CurrentY = y;
         }
 
         public abstract double GetFuelEfficiency();
-        public bool IsOffCourse(double allowedDeviation, double correctY)
-        {
-            return Math.Abs(CurrentY - correctY) > allowedDeviation;
-        }
+        //public bool IsOffCourse(double allowedDeviation, double correctY)
+        //{
+        //    return Math.Abs(CurrentY - correctY) > allowedDeviation;
+        //}
 
         public void DriftFurther()
         {
-            if (Random.Next(100) > 50)
-            {
-                DriftAmount += 1; // Make the ship drift further off course
-            }
-            else
-            {
-                DriftAmount -= 1; // Make the ship drift further off course
-            }
+            DriftAmount += (Random.Next(2) == 0) ? 0.5 : -0.5;
         }
 
         public double GetDriftedY()

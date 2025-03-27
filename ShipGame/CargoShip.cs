@@ -10,7 +10,7 @@ namespace ShipGame
     class CargoShip : Ship
     {
         public override string ShipType => "Cargo Ship";
-        public CargoShip(int speed, Brush color, double size, double startX, double startY, double endX, double endY) : base(speed, color, size, startX, startY, endX, endY)
+        public CargoShip(float speed, Brush color, double size, double startX, double startY, double endX, double endY) : base(speed, color, size, startX, startY, endX, endY)
         {
         }
 
