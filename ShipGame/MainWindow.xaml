@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ShipGame"
         mc:Ignorable="d"
-        Title="Ship Game" Height="522" Width="800">
+        Title="Ship Game" Height="520" Width="800">
     <Grid>
         <Canvas Name="GameCanvas" Background="LightBlue">
             <!-- Predefined Ship Paths -->
@@ -36,9 +36,9 @@
                     </PathGeometry>
                 </Path.Data>
             </Path>
-            <Button Content="Ship 1" Canvas.Left="263" Canvas.Top="476"/>
-            <Button Content="Ship 2" Canvas.Left="330" Canvas.Top="476"/>
-            <Button Content="Ship 3" Canvas.Left="400" Canvas.Top="476" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            <Button Content="Ship 1" Canvas.Left="313" Canvas.Top="445" Click="FixShipPath"/>
+            <Button Content="Ship 2" Canvas.Left="380" Canvas.Top="445" Click="FixShipPath"/>
+            <Button Content="Ship 3" Canvas.Left="450" Canvas.Top="445" Click="FixShipPath"/>
         </Canvas>
     </Grid>
 </Window>

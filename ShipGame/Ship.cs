@@ -67,5 +67,11 @@ namespace ShipGame
             Canvas.SetTop(Shape, position.Y);
         }
 
+        public void ResetDrift()
+        {
+            drifting = false;
+            driftOffset = 0;
+        }
+
     }
 }

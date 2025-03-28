@@ -109,5 +109,26 @@ namespace ShipGame
 
         //    return new Point(x, y);
         //}
+        private void FixShipPath(object sender, RoutedEventArgs e)
+        {
+            Button clickedButton = sender as Button;
+            if (clickedButton == null) return;
+
+            int shipIndex = -1;
+
+            // Identify which ship the button corresponds to
+            if (clickedButton.Content.ToString() == "Ship 1") shipIndex = 0;
+            if (clickedButton.Content.ToString() == "Ship 2") shipIndex = 1;
+            if (clickedButton.Content.ToString() == "Ship 3") shipIndex = 2;
+
+            if (shipIndex >= 0 && shipIndex < ships.Count)
+            {
+                Ship ship = ships[shipIndex];
+
+                // Reset drift effect
+                ship.ResetDrift();
+            }
+        }
+
     }
 }
