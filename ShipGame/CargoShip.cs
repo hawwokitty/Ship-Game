@@ -10,14 +10,13 @@ namespace ShipGame
     class CargoShip : Ship
     {
         public override string ShipType => "Cargo Ship";
-        public CargoShip(float speed, Brush color, double size, double startX, double startY, double endX, double endY) : base(speed, color, size, startX, startY, endX, endY)
-        {
-        }
+        public CargoShip(double speed, Brush color, double size, BezierPath path)
+            : base(speed, color, size, path) { }
 
-        public override double FuelConsumption { get; }
-        public override double GetFuelEfficiency()
-        {
-            return Speed / FuelConsumption;
-        }
+        //public override double FuelConsumption { get; }
+        //public override double GetFuelEfficiency()
+        //{
+        //    return Speed / FuelConsumption;
+        //}
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Shapes;
@@ -12,26 +13,22 @@ namespace ShipGame
     public abstract class Ship
     {
         public virtual string ShipType { get; set; }
-        public double Speed { get; set; }
-        public double StartX, StartY, EndX, EndY;
-        public double CurrentX, CurrentY;
-        public double DriftAmount = 0;
-        public bool HasStartedDrifting { get; set; } = false; 
-        public abstract double FuelConsumption { get; }
-        public Random Random = new Random();
-
         public Ellipse Shape { get; private set; }
+        public BezierPath Path { get; private set; }
+        private double t = 0;
+        public double Speed;
+        private bool drifting = false;
+        private int driftOffset = 0;
+        private Random shipRandom;
 
-        public Ship(double speed, Brush color, double size, double startX, double startY, double endX, double endY)
+        public bool HasReachedEnd => t > 1;
+
+        public Ship(double speed, Brush color, double size, BezierPath path)
         {
             Speed = speed;
-            StartX = startX;
-            StartY = startY;
-            EndX = endX;
-            EndY = endY;
+            Path = path;
 
-            CurrentX = startX;
-            CurrentY = startY;
+            shipRandom = new Random(Guid.NewGuid().GetHashCode());
 
             Shape = new Ellipse
             {
@@ -39,36 +36,35 @@ namespace ShipGame
                 Height = size,
                 Fill = color
             };
+
+            MoveTo(Path.GetPoint(0));
         }
 
-        public void MoveTo(double x, double y)
+        public void MoveAlongPath()
         {
-            Canvas.SetLeft(Shape, x);
-            Canvas.SetTop(Shape, y);
-            CurrentX = x;
-            CurrentY = y;
+            if (t > 1) return;
+
+            // Start drifting randomly (each ship decides independently)
+            if (!drifting && shipRandom.Next(100) < 10)
+            {
+                drifting = true;
+            }
+
+            if (drifting)
+            {
+                driftOffset += shipRandom.Next(2) == 0 ? -1 : 1; // Drift up or down randomly
+            }
+
+            Point newPosition = Path.GetPoint(t);
+            MoveTo(new Point(newPosition.X, newPosition.Y + driftOffset));
+
+            t += Speed / 1000.0;
         }
 
-        public abstract double GetFuelEfficiency();
-        //public bool IsOffCourse(double allowedDeviation, double correctY)
-        //{
-        //    return Math.Abs(CurrentY - correctY) > allowedDeviation;
-        //}
-
-        public void DriftFurther()
+        public void MoveTo(Point position)
         {
-            DriftAmount += (Random.Next(2) == 0) ? 0.5 : -0.5;
-        }
-
-        public double GetDriftedY()
-        {
-            return CurrentY + DriftAmount;
-        }
-        public void RestartCourse()
-        {
-            // Reset back on course
-            CurrentX = StartX;
-            CurrentY = StartY;
+            Canvas.SetLeft(Shape, position.X);
+            Canvas.SetTop(Shape, position.Y);
         }
 
     }

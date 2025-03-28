@@ -27,7 +27,7 @@ namespace ShipGame
         private DispatcherTimer gameTimer;
         private double t = 0;
         private int offset = 10;
-        //private List<BezierPath> shipPaths = new List<BezierPath>();
+        private List<BezierPath> shipPaths = new List<BezierPath>();
         public MainWindow()
         {
             InitializeComponent();
@@ -36,13 +36,16 @@ namespace ShipGame
 
         private void InitGame()
         {
-            // Create and add ships
-            CargoShip ship1 = new CargoShip(2, Brushes.Yellow, 20, 100, 100, 700, 100);
-            CargoShip ship2 = new CargoShip(2, Brushes.Yellow, 20, 100, 250, 700, 250);
-            ships.Add(ship1);
-            ships.Add(ship2);
-            GameCanvas.Children.Add(ship1.Shape);
-            GameCanvas.Children.Add(ship2.Shape);
+            // Define the three Bezier paths
+            shipPaths.Add(new BezierPath(new Point(100, 100), new Point(300, 200), new Point(500, 50), new Point(700, 100)));
+            shipPaths.Add(new BezierPath(new Point(100, 250), new Point(400, 200), new Point(500, 150), new Point(700, 250)));
+            shipPaths.Add(new BezierPath(new Point(100, 400), new Point(400, 200), new Point(500, 450), new Point(700, 400)));
+
+            // Spawn one ship per path
+            foreach (var path in shipPaths)
+            {
+                SpawnNewShip(path);
+            }
 
             // Timer for ship movement
             gameTimer = new DispatcherTimer();
@@ -52,57 +55,59 @@ namespace ShipGame
         }
         private void GameLoop(object sender, EventArgs e)
         {
-            if (t > 1) return;
+            List<Ship> shipsToRemove = new List<Ship>();
 
             foreach (var ship in ships)
             {
-                // Calculate the expected point on the correct Bezier curve path
-                Point nextPoint = BezierCurve(t,
-                    new Point(100 - offset, 100 - offset),
-                    new Point(300 - offset, 200 - offset),
-                    new Point(500 - offset, 50 - offset),
-                    new Point(700 - offset, 100 - offset));
+                ship.MoveAlongPath();
 
-                // If the ship hasn't started drifting yet, roll the chance to start drifting
-                if (!ship.HasStartedDrifting && random.Next(100) < 10) // % chance to start drifting
+                if (ship.HasReachedEnd)
                 {
-                    ship.HasStartedDrifting = true; // Mark it as drifting
+                    shipsToRemove.Add(ship); // Mark for removal
                 }
-
-                // If the ship has started drifting, it keeps drifting further off course
-                if (ship.HasStartedDrifting)
-                {
-                    ship.DriftFurther(); // Make it drift up or down by 1 pixel
-                    ship.MoveTo(nextPoint.X, ship.GetDriftedY());
-                }
-                else
-                {
-                    ship.MoveTo(nextPoint.X, nextPoint.Y);
-                }
-
-                // Update current position
-                ship.CurrentX = nextPoint.X;
-                ship.CurrentY = nextPoint.Y;
             }
 
-            t += 0.0005; // Advance along the Bezier curve
+            // Remove ships that reached the end
+            foreach (var ship in shipsToRemove)
+            {
+                GameCanvas.Children.Remove(ship.Shape);
+                ships.Remove(ship);
+
+                // Find the path the ship was using and spawn a new one
+                var path = ship.Path;
+                SpawnNewShip(path);
+            }
         }
 
-
-
-        private Point BezierCurve(double t, Point p0, Point p1, Point p2, Point p3)
+        private void SpawnNewShip(BezierPath path)
         {
-            double x = Math.Pow(1 - t, 3) * p0.X +
-                       3 * Math.Pow(1 - t, 2) * t * p1.X +
-                       3 * (1 - t) * Math.Pow(t, 2) * p2.X +
-                       Math.Pow(t, 3) * p3.X;
+            Ship newShip;
+            if (random.Next(2) == 0)
+            {
+                newShip = new CargoShip(3, Brushes.Yellow, 20, path);
+            }
+            else
+            {
+                newShip = new OilTanker(2, Brushes.Orange, 25, path);
+            }
 
-            double y = Math.Pow(1 - t, 3) * p0.Y +
-                       3 * Math.Pow(1 - t, 2) * t * p1.Y +
-                       3 * (1 - t) * Math.Pow(t, 2) * p2.Y +
-                       Math.Pow(t, 3) * p3.Y;
-
-            return new Point(x, y);
+            ships.Add(newShip);
+            GameCanvas.Children.Add(newShip.Shape);
         }
+
+        //private Point BezierCurve(double t, Point p0, Point p1, Point p2, Point p3)
+        //{
+        //    double x = Math.Pow(1 - t, 3) * p0.X +
+        //               3 * Math.Pow(1 - t, 2) * t * p1.X +
+        //               3 * (1 - t) * Math.Pow(t, 2) * p2.X +
+        //               Math.Pow(t, 3) * p3.X;
+
+        //    double y = Math.Pow(1 - t, 3) * p0.Y +
+        //               3 * Math.Pow(1 - t, 2) * t * p1.Y +
+        //               3 * (1 - t) * Math.Pow(t, 2) * p2.Y +
+        //               Math.Pow(t, 3) * p3.Y;
+
+        //    return new Point(x, y);
+        //}
     }
 }
