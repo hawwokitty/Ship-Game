@@ -28,6 +28,7 @@ namespace ShipGame
         private double t = 0;
         private int offset = 10;
         private List<BezierPath> shipPaths = new List<BezierPath>();
+
         public MainWindow()
         {
             InitializeComponent();
@@ -41,10 +42,10 @@ namespace ShipGame
             shipPaths.Add(new BezierPath(new Point(100, 250), new Point(400, 200), new Point(500, 150), new Point(700, 250)));
             shipPaths.Add(new BezierPath(new Point(100, 400), new Point(400, 200), new Point(500, 450), new Point(700, 400)));
 
-            // Spawn one ship per path
-            foreach (var path in shipPaths)
+            // Spawn ships and assign fixed positions (1, 2, and 3)
+            for (int i = 0; i < 3; i++)
             {
-                SpawnNewShip(path);
+                SpawnNewShip(i, shipPaths[i]);
             }
 
             // Timer for ship movement
@@ -53,6 +54,7 @@ namespace ShipGame
             gameTimer.Tick += GameLoop;
             gameTimer.Start();
         }
+
         private void GameLoop(object sender, EventArgs e)
         {
             List<Ship> shipsToRemove = new List<Ship>();
@@ -67,20 +69,24 @@ namespace ShipGame
                 }
             }
 
-            // Remove ships that reached the end
+            // Remove ships that reached the end and spawn a new ship in its place
             foreach (var ship in shipsToRemove)
             {
                 GameCanvas.Children.Remove(ship.Shape);
                 ships.Remove(ship);
 
-                // Find the path the ship was using and spawn a new one
-                var path = ship.Path;
-                SpawnNewShip(path);
+                // Get the path of the removed ship and spawn a new ship on that path
+                int index = shipPaths.IndexOf(ship.Path);
+                if (index >= 0)
+                {
+                    SpawnNewShip(index, shipPaths[index]);
+                }
             }
         }
 
-        private void SpawnNewShip(BezierPath path)
+        private void SpawnNewShip(int shipIndex, BezierPath path)
         {
+            // Create a new ship with a fixed type and size for each path
             Ship newShip;
             if (random.Next(2) == 0)
             {
@@ -91,24 +97,22 @@ namespace ShipGame
                 newShip = new OilTanker(2, Brushes.Orange, 25, path);
             }
 
-            ships.Add(newShip);
+            // Replace the old ship with the new one, preserving the order
+            if (shipIndex < ships.Count)
+            {
+                ships[shipIndex] = newShip; // Replaces the old ship with the new one at the same index
+            }
+            else
+            {
+                ships.Add(newShip); // Add the new ship if it's the first spawn
+            }
+
+            // Ensure that the new ship is added to the canvas and that its movement starts correctly
             GameCanvas.Children.Add(newShip.Shape);
+            newShip.MoveAlongPath();  // Ensure the ship starts moving immediately
         }
 
-        //private Point BezierCurve(double t, Point p0, Point p1, Point p2, Point p3)
-        //{
-        //    double x = Math.Pow(1 - t, 3) * p0.X +
-        //               3 * Math.Pow(1 - t, 2) * t * p1.X +
-        //               3 * (1 - t) * Math.Pow(t, 2) * p2.X +
-        //               Math.Pow(t, 3) * p3.X;
 
-        //    double y = Math.Pow(1 - t, 3) * p0.Y +
-        //               3 * Math.Pow(1 - t, 2) * t * p1.Y +
-        //               3 * (1 - t) * Math.Pow(t, 2) * p2.Y +
-        //               Math.Pow(t, 3) * p3.Y;
-
-        //    return new Point(x, y);
-        //}
         private void FixShipPath(object sender, RoutedEventArgs e)
         {
             Button clickedButton = sender as Button;
@@ -129,6 +133,6 @@ namespace ShipGame
                 ship.ResetDrift();
             }
         }
-
     }
+
 }

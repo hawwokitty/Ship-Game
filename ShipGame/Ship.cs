@@ -20,6 +20,7 @@ namespace ShipGame
         private bool drifting = false;
         private int driftOffset = 0;
         private Random shipRandom;
+        private bool fixedPath = false;
 
         public bool HasReachedEnd => t > 1;
 
@@ -44,8 +45,14 @@ namespace ShipGame
         {
             if (t > 1) return;
 
-            // Start drifting randomly (each ship decides independently)
-            if (!drifting && shipRandom.Next(100) < 10)
+            // Only allow drifting after ResetDrift, with a 5% chance if path is fixed
+            if (fixedPath && !drifting && shipRandom.Next(100) < 1)
+            {
+                drifting = true;
+            }
+
+            // If not fixed path, allow 10% chance to start drifting
+            if (!fixedPath && !drifting && shipRandom.Next(100) < 10)
             {
                 drifting = true;
             }
@@ -61,17 +68,24 @@ namespace ShipGame
             t += Speed / 1000.0;
         }
 
+
         public void MoveTo(Point position)
         {
             Canvas.SetLeft(Shape, position.X);
-            Canvas.SetTop(Shape, position.Y);
+            Canvas.SetTop(Shape, position.Y - (Shape.Height / 2)); // Centering the ship
         }
+
 
         public void ResetDrift()
         {
             drifting = false;
             driftOffset = 0;
+            fixedPath = true;
+
+            //// Reset movement progress to restart the ship
+            //t = 0; // Reset path progress to start over
         }
+
 
     }
 }
