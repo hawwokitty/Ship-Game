@@ -62,6 +62,8 @@ namespace ShipGame
             foreach (var ship in ships)
             {
                 ship.MoveAlongPath();
+                //Debug.WriteLine($"Ships Count: {ships.Count}");
+
 
                 if (ship.HasReachedEnd)
                 {
@@ -69,19 +71,31 @@ namespace ShipGame
                 }
             }
 
-            // Remove ships that reached the end and spawn a new ship in its place
+            // Remove ships that reached the end and maintain order
             foreach (var ship in shipsToRemove)
             {
-                GameCanvas.Children.Remove(ship.Shape);
+                int shipIndex = ships.IndexOf(ship); // Find index of removed ship
                 ships.Remove(ship);
+                GameCanvas.Children.Remove(ship.Shape);
 
-                // Get the path of the removed ship and spawn a new ship on that path
-                int index = shipPaths.IndexOf(ship.Path);
-                if (index >= 0)
+                // Ensure we insert the new ship at the same index
+                if (shipIndex >= 0)
                 {
-                    SpawnNewShip(index, shipPaths[index]);
+                    Ship newShip;
+                    if (random.Next(2) == 0)
+                    {
+                        newShip = new CargoShip(3, Brushes.Yellow, 20, ship.Path);
+                    }
+                    else
+                    {
+                        newShip = new OilTanker(2, Brushes.Orange, 25, ship.Path);
+                    }
+
+                    ships.Insert(shipIndex, newShip); // Maintain order!
+                    GameCanvas.Children.Add(newShip.Shape);
                 }
             }
+
         }
 
         private void SpawnNewShip(int shipIndex, BezierPath path)

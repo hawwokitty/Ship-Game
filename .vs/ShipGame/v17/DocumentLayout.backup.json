@@ -3,12 +3,12 @@
   "WorkspaceRootPath": "D:\\get_stuff\\Ship\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{F86E3CB1-C013-424C-AB85-0214350CD7AF}|ShipGame\\ShipGame.csproj|d:\\get_stuff\\ship\\shipgame\\ship.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F86E3CB1-C013-424C-AB85-0214350CD7AF}|ShipGame\\ShipGame.csproj|solutionrelative:shipgame\\ship.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{F86E3CB1-C013-424C-AB85-0214350CD7AF}|ShipGame\\ShipGame.csproj|d:\\get_stuff\\ship\\shipgame\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F86E3CB1-C013-424C-AB85-0214350CD7AF}|ShipGame\\ShipGame.csproj|solutionrelative:shipgame\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F86E3CB1-C013-424C-AB85-0214350CD7AF}|ShipGame\\ShipGame.csproj|d:\\get_stuff\\ship\\shipgame\\ship.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F86E3CB1-C013-424C-AB85-0214350CD7AF}|ShipGame\\ShipGame.csproj|solutionrelative:shipgame\\ship.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{F86E3CB1-C013-424C-AB85-0214350CD7AF}|ShipGame\\ShipGame.csproj|D:\\get_stuff\\Ship\\shipgame\\cargoship.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -37,7 +37,7 @@
       "VerticalTabListWidth": 256,
       "DocumentGroups": [
         {
-          "DockedWidth": 223,
+          "DockedWidth": 199,
           "SelectedChildIndex": 2,
           "Children": [
             {
@@ -50,8 +50,7 @@
               "RelativeToolTip": "ShipGame\\BezierPath.cs",
               "ViewState": "AgIAAAYAAAAAAAAAAAAAAAkAAAALAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-28T08:44:31.449Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-28T08:44:31.449Z"
             },
             {
               "$type": "Document",
@@ -63,18 +62,17 @@
               "RelativeToolTip": "ShipGame\\CargoShip.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAArAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-27T10:25:31.379Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-27T10:25:31.379Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "MainWindow.xaml.cs",
               "DocumentMoniker": "D:\\get_stuff\\Ship\\ShipGame\\MainWindow.xaml.cs",
               "RelativeDocumentMoniker": "ShipGame\\MainWindow.xaml.cs",
-              "ToolTip": "D:\\get_stuff\\Ship\\ShipGame\\MainWindow.xaml.cs",
-              "RelativeToolTip": "ShipGame\\MainWindow.xaml.cs",
-              "ViewState": "AgIAAE4AAAAAAAAAAAAAwHEAAAAAAAAAAAAAAA==",
+              "ToolTip": "D:\\get_stuff\\Ship\\ShipGame\\MainWindow.xaml.cs*",
+              "RelativeToolTip": "ShipGame\\MainWindow.xaml.cs*",
+              "ViewState": "AgIAAC8AAAAAAAAAAAAAwEAAAAAPAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-03-27T09:47:12.497Z",
               "EditorCaption": ""
@@ -82,7 +80,7 @@
           ]
         },
         {
-          "DockedWidth": 177,
+          "DockedWidth": 201,
           "SelectedChildIndex": 2,
           "Children": [
             {
@@ -94,8 +92,7 @@
               "ToolTip": "D:\\get_stuff\\Ship\\ShipGame\\App.xaml",
               "RelativeToolTip": "ShipGame\\App.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-03-28T13:12:59.412Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-28T13:12:59.412Z"
             },
             {
               "$type": "Document",
@@ -106,18 +103,17 @@
               "ToolTip": "D:\\get_stuff\\Ship\\ShipGame\\MainWindow.xaml",
               "RelativeToolTip": "ShipGame\\MainWindow.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-03-25T14:15:48.768Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-25T14:15:48.768Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "Ship.cs",
               "DocumentMoniker": "D:\\get_stuff\\Ship\\ShipGame\\Ship.cs",
               "RelativeDocumentMoniker": "ShipGame\\Ship.cs",
-              "ToolTip": "D:\\get_stuff\\Ship\\ShipGame\\Ship.cs*",
-              "RelativeToolTip": "ShipGame\\Ship.cs*",
-              "ViewState": "AgIAADwAAAAAAAAAAAAuwFUAAAA5AAAAAAAAAA==",
+              "ToolTip": "D:\\get_stuff\\Ship\\ShipGame\\Ship.cs",
+              "RelativeToolTip": "ShipGame\\Ship.cs",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAgwE8AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-03-27T09:47:01.604Z",
               "EditorCaption": ""
@@ -132,8 +128,7 @@
               "RelativeToolTip": "ShipGame\\OilTanker.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAA2AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-28T08:47:21.271Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-28T08:47:21.271Z"
             }
           ]
         }

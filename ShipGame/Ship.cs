@@ -7,6 +7,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace ShipGame
 {
@@ -15,14 +16,15 @@ namespace ShipGame
         public virtual string ShipType { get; set; }
         public Ellipse Shape { get; private set; }
         public BezierPath Path { get; private set; }
-        private double t = 0;
+        public double t = 0;
         public double Speed;
         private bool drifting = false;
         private int driftOffset = 0;
         private Random shipRandom;
         private bool fixedPath = false;
 
-        public bool HasReachedEnd => t > 1;
+        public bool HasReachedEnd => t >= 1.0;
+
 
         public Ship(double speed, Brush color, double size, BezierPath path)
         {
@@ -46,7 +48,7 @@ namespace ShipGame
             if (t > 1) return;
 
             // Only allow drifting after ResetDrift, with a 5% chance if path is fixed
-            if (fixedPath && !drifting && shipRandom.Next(100) < 1)
+            if (fixedPath && !drifting && shipRandom.Next(1000) < 1)
             {
                 drifting = true;
             }
@@ -73,6 +75,9 @@ namespace ShipGame
         {
             Canvas.SetLeft(Shape, position.X);
             Canvas.SetTop(Shape, position.Y - (Shape.Height / 2)); // Centering the ship
+
+            Application.Current.Dispatcher.Invoke(() => { }, DispatcherPriority.Render);
+
         }
 
 
