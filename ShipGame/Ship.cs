@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,12 +20,18 @@ namespace ShipGame
         public double t = 0;
         public double Speed;
         private bool drifting = false;
-        private int driftOffset = 0;
+        public int driftOffset = 0;
         private Random shipRandom;
         private bool fixedPath = false;
 
-        public bool HasReachedEnd => t >= 1.0;
-
+        public bool HasReachedEnd
+        {
+            get
+            {
+                //Debug.WriteLine(driftOffset);
+                return Math.Abs(driftOffset) <= 20 && t > 1;
+            }
+        }
 
         public Ship(double speed, Brush color, double size, BezierPath path)
         {
@@ -61,12 +68,11 @@ namespace ShipGame
 
             if (drifting)
             {
-                driftOffset += shipRandom.Next(2) == 0 ? -1 : 1; // Drift up or down randomly
+                driftOffset += shipRandom.Next(2) == 0 ? -2 : 2; // Drift up or down randomly
             }
 
             Point newPosition = Path.GetPoint(t);
             MoveTo(new Point(newPosition.X, newPosition.Y + driftOffset));
-
             t += Speed / 1000.0;
         }
 

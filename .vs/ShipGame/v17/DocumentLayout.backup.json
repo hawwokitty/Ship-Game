@@ -7,6 +7,10 @@
       "RelativeMoniker": "D:0:0:{F86E3CB1-C013-424C-AB85-0214350CD7AF}|ShipGame\\ShipGame.csproj|solutionrelative:shipgame\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{F86E3CB1-C013-424C-AB85-0214350CD7AF}|ShipGame\\ShipGame.csproj|D:\\get_stuff\\Ship\\shipgame\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{F86E3CB1-C013-424C-AB85-0214350CD7AF}|ShipGame\\ShipGame.csproj|solutionrelative:shipgame\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{F86E3CB1-C013-424C-AB85-0214350CD7AF}|ShipGame\\ShipGame.csproj|d:\\get_stuff\\ship\\shipgame\\ship.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F86E3CB1-C013-424C-AB85-0214350CD7AF}|ShipGame\\ShipGame.csproj|solutionrelative:shipgame\\ship.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -21,10 +25,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{F86E3CB1-C013-424C-AB85-0214350CD7AF}|ShipGame\\ShipGame.csproj|D:\\get_stuff\\Ship\\shipgame\\bezierpath.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F86E3CB1-C013-424C-AB85-0214350CD7AF}|ShipGame\\ShipGame.csproj|solutionrelative:shipgame\\bezierpath.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F86E3CB1-C013-424C-AB85-0214350CD7AF}|ShipGame\\ShipGame.csproj|D:\\get_stuff\\Ship\\shipgame\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{F86E3CB1-C013-424C-AB85-0214350CD7AF}|ShipGame\\ShipGame.csproj|solutionrelative:shipgame\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{F86E3CB1-C013-424C-AB85-0214350CD7AF}|ShipGame\\ShipGame.csproj|D:\\get_stuff\\Ship\\shipgame\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
@@ -42,7 +42,7 @@
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "BezierPath.cs",
               "DocumentMoniker": "D:\\get_stuff\\Ship\\ShipGame\\BezierPath.cs",
               "RelativeDocumentMoniker": "ShipGame\\BezierPath.cs",
@@ -54,7 +54,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "CargoShip.cs",
               "DocumentMoniker": "D:\\get_stuff\\Ship\\ShipGame\\CargoShip.cs",
               "RelativeDocumentMoniker": "ShipGame\\CargoShip.cs",
@@ -72,7 +72,7 @@
               "RelativeDocumentMoniker": "ShipGame\\MainWindow.xaml.cs",
               "ToolTip": "D:\\get_stuff\\Ship\\ShipGame\\MainWindow.xaml.cs*",
               "RelativeToolTip": "ShipGame\\MainWindow.xaml.cs*",
-              "ViewState": "AgIAAC8AAAAAAAAAAAAAwEAAAAAPAAAAAAAAAA==",
+              "ViewState": "AgIAADAAAAAAAAAAAAAqwEIAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-03-27T09:47:12.497Z",
               "EditorCaption": ""
@@ -81,7 +81,7 @@
         },
         {
           "DockedWidth": 201,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
@@ -92,35 +92,37 @@
               "ToolTip": "D:\\get_stuff\\Ship\\ShipGame\\App.xaml",
               "RelativeToolTip": "ShipGame\\App.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-03-28T13:12:59.412Z"
+              "WhenOpened": "2025-03-28T13:12:59.412Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 1,
               "Title": "MainWindow.xaml",
               "DocumentMoniker": "D:\\get_stuff\\Ship\\ShipGame\\MainWindow.xaml",
               "RelativeDocumentMoniker": "ShipGame\\MainWindow.xaml",
               "ToolTip": "D:\\get_stuff\\Ship\\ShipGame\\MainWindow.xaml",
               "RelativeToolTip": "ShipGame\\MainWindow.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-03-25T14:15:48.768Z"
+              "WhenOpened": "2025-03-25T14:15:48.768Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "Ship.cs",
               "DocumentMoniker": "D:\\get_stuff\\Ship\\ShipGame\\Ship.cs",
               "RelativeDocumentMoniker": "ShipGame\\Ship.cs",
               "ToolTip": "D:\\get_stuff\\Ship\\ShipGame\\Ship.cs",
               "RelativeToolTip": "ShipGame\\Ship.cs",
-              "ViewState": "AgIAAA8AAAAAAAAAAAAgwE8AAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAQwB8AAAAXAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-03-27T09:47:01.604Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "OilTanker.cs",
               "DocumentMoniker": "D:\\get_stuff\\Ship\\ShipGame\\OilTanker.cs",
               "RelativeDocumentMoniker": "ShipGame\\OilTanker.cs",

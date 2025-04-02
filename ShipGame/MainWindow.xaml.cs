@@ -29,6 +29,7 @@ namespace ShipGame
         private int offset = 10;
         private List<BezierPath> shipPaths = new List<BezierPath>();
 
+        private int lives = 3;
         public MainWindow()
         {
             InitializeComponent();
@@ -57,17 +58,29 @@ namespace ShipGame
 
         private void GameLoop(object sender, EventArgs e)
         {
+            if (lives <= 0)
+            {
+                gameTimer.Stop();
+                MessageBox.Show("Game Over!");
+                return;
+            }
+
             List<Ship> shipsToRemove = new List<Ship>();
 
             foreach (var ship in ships)
             {
                 ship.MoveAlongPath();
-                //Debug.WriteLine($"Ships Count: {ships.Count}");
 
-
+                // Remove the ship if it has reached the end
                 if (ship.HasReachedEnd)
                 {
-                    shipsToRemove.Add(ship); // Mark for removal
+                    shipsToRemove.Add(ship);
+                }
+                // Remove the ship if it's too far from the path (drift check)
+                else if (Math.Abs(ship.driftOffset) > 20 && ship.t > 1)
+                {
+                    shipsToRemove.Add(ship);
+                    lives--; // Failed path = Lose a point
                 }
             }
 
@@ -76,6 +89,7 @@ namespace ShipGame
             {
                 int shipIndex = ships.IndexOf(ship); // Find index of removed ship
                 ships.Remove(ship);
+                //Debug.WriteLine($"Removing Ship: {ship.ShipType} | Current offset: {ship.driftOffset}");
                 GameCanvas.Children.Remove(ship.Shape);
 
                 // Ensure we insert the new ship at the same index
@@ -95,7 +109,8 @@ namespace ShipGame
                     GameCanvas.Children.Add(newShip.Shape);
                 }
             }
-
+            // 🔹 Update the Label UI with new points
+            LivesLabel.Content = $"Lives: {lives}";
         }
 
         private void SpawnNewShip(int shipIndex, BezierPath path)

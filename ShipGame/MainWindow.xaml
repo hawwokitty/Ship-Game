@@ -8,7 +8,7 @@
         Title="Ship Game" Height="520" Width="800">
     <Grid>
         <Canvas Name="GameCanvas" Background="LightBlue">
-            <!-- Predefined Ship Paths -->
+            <!-- 🚢 Path 1 -->
             <Path Stroke="Red" StrokeThickness="2">
                 <Path.Data>
                     <PathGeometry>
@@ -18,6 +18,27 @@
                     </PathGeometry>
                 </Path.Data>
             </Path>
+            <!-- 🚧 Safety Bounds for Path 1 -->
+            <Path Stroke="OrangeRed" StrokeThickness="1" StrokeDashArray="5,2" Opacity="0.6">
+                <Path.Data>
+                    <PathGeometry>
+                        <PathFigure StartPoint="100,120">
+                            <BezierSegment Point1="300,220" Point2="500,70" Point3="700,120"/>
+                        </PathFigure>
+                    </PathGeometry>
+                </Path.Data>
+            </Path>
+            <Path Stroke="OrangeRed" StrokeThickness="1" StrokeDashArray="5,2" Opacity="0.6">
+                <Path.Data>
+                    <PathGeometry>
+                        <PathFigure StartPoint="100,80">
+                            <BezierSegment Point1="300,180" Point2="500,30" Point3="700,80"/>
+                        </PathFigure>
+                    </PathGeometry>
+                </Path.Data>
+            </Path>
+
+            <!-- 🚢 Path 2 -->
             <Path Stroke="Red" StrokeThickness="2">
                 <Path.Data>
                     <PathGeometry>
@@ -27,6 +48,27 @@
                     </PathGeometry>
                 </Path.Data>
             </Path>
+            <!-- 🚧 Safety Bounds for Path 2 -->
+            <Path Stroke="OrangeRed" StrokeThickness="1" StrokeDashArray="5,2" Opacity="0.6">
+                <Path.Data>
+                    <PathGeometry>
+                        <PathFigure StartPoint="100,270">
+                            <BezierSegment Point1="400,220" Point2="500,170" Point3="700,270"/>
+                        </PathFigure>
+                    </PathGeometry>
+                </Path.Data>
+            </Path>
+            <Path Stroke="OrangeRed" StrokeThickness="1" StrokeDashArray="5,2" Opacity="0.6">
+                <Path.Data>
+                    <PathGeometry>
+                        <PathFigure StartPoint="100,230">
+                            <BezierSegment Point1="400,180" Point2="500,130" Point3="700,230"/>
+                        </PathFigure>
+                    </PathGeometry>
+                </Path.Data>
+            </Path>
+
+            <!-- 🚢 Path 3 -->
             <Path Stroke="Red" StrokeThickness="2">
                 <Path.Data>
                     <PathGeometry>
@@ -36,9 +78,30 @@
                     </PathGeometry>
                 </Path.Data>
             </Path>
+            <!-- 🚧 Safety Bounds for Path 3 -->
+            <Path Stroke="OrangeRed" StrokeThickness="1" StrokeDashArray="5,2" Opacity="0.6">
+                <Path.Data>
+                    <PathGeometry>
+                        <PathFigure StartPoint="100,420">
+                            <BezierSegment Point1="400,220" Point2="500,470" Point3="700,420"/>
+                        </PathFigure>
+                    </PathGeometry>
+                </Path.Data>
+            </Path>
+            <Path Stroke="OrangeRed" StrokeThickness="1" StrokeDashArray="5,2" Opacity="0.6">
+                <Path.Data>
+                    <PathGeometry>
+                        <PathFigure StartPoint="100,380">
+                            <BezierSegment Point1="400,180" Point2="500,430" Point3="700,380"/>
+                        </PathFigure>
+                    </PathGeometry>
+                </Path.Data>
+            </Path>
             <Button Content="Ship 1" Canvas.Left="313" Canvas.Top="445" Click="FixShipPath"/>
             <Button Content="Ship 2" Canvas.Left="380" Canvas.Top="445" Click="FixShipPath"/>
             <Button Content="Ship 3" Canvas.Left="450" Canvas.Top="445" Click="FixShipPath"/>
+            <Label Name="LivesLabel" Content="Lives: 3" Canvas.Left="10" Canvas.Top="10"/>
+
         </Canvas>
     </Grid>
 </Window>
