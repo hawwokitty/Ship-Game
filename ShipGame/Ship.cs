@@ -90,12 +90,10 @@ namespace ShipGame
         public void ResetDrift()
         {
             drifting = false;
-            driftOffset = 0;
+            driftOffset -= Math.Sign(driftOffset) * 3; // Reduce drift by 3 while keeping direction
             fixedPath = true;
-
-            //// Reset movement progress to restart the ship
-            //t = 0; // Reset path progress to start over
         }
+
 
 
     }

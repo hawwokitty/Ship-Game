@@ -101,6 +101,7 @@
             <Button Content="Ship 2" Canvas.Left="380" Canvas.Top="445" Click="FixShipPath"/>
             <Button Content="Ship 3" Canvas.Left="450" Canvas.Top="445" Click="FixShipPath"/>
             <Label Name="LivesLabel" Content="Lives: 3" Canvas.Left="10" Canvas.Top="10"/>
+            <Label Name="PointsLabel" Content="Points: 0" Canvas.Left="100" Canvas.Top="10"/>
 
         </Canvas>
     </Grid>
