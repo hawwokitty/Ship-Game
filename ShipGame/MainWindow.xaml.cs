@@ -30,7 +30,16 @@ namespace ShipGame
             gameManager = new GameManager(GameCanvas, LivesLabel, PointsLabel);
             gameManager.GameOver += OnGameOver;
             gameManager.RemoveShip += OnShipRemoved;
-            gameManager.InitGame();
+
+            try
+            {
+                gameManager.InitGame();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
         }
 
         private void OnGameOver()
@@ -44,7 +53,7 @@ namespace ShipGame
             // Handle the ship removal logic, e.g., update UI, log the event, etc.
             Debug.WriteLine($"Ship removed: {removedShip.ShipType} | Current drift offset: {removedShip.driftOffset}");
 
-            
+
         }
 
         private void FixShipPath(object sender, RoutedEventArgs e)

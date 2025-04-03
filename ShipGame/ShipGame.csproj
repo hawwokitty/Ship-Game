@@ -58,6 +58,7 @@
     <Compile Include="BezierPath.cs" />
     <Compile Include="CargoShip.cs" />
     <Compile Include="GameManager.cs" />
+    <Compile Include="GameManager.UI.cs" />
     <Compile Include="OilTanker.cs" />
     <Compile Include="Ship.cs" />
     <Page Include="MainWindow.xaml">

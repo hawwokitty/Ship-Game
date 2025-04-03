@@ -10,9 +10,14 @@ using System.Windows.Controls;
 
 namespace ShipGame
 {
-    class GameManager
+    partial class GameManager
     {
         private List<Ship> ships = new List<Ship>();
+        public void AddShip<T>(T newShip) where T : Ship
+        {
+            ships.Add(newShip);
+        }
+
         private List<BezierPath> shipPaths = new List<BezierPath>();
         private Random random = new Random();
         private DispatcherTimer gameTimer;
@@ -99,7 +104,7 @@ namespace ShipGame
                 int shipIndex = ships.IndexOf(ship); // Find index of removed ship
                 ships.Remove(ship);
                 //Debug.WriteLine($"Removing Ship: {ship.ShipType} | Current offset: {ship.driftOffset}");
-                gameCanvas.Children.Remove(ship.Shape);
+                EraseShip(ship);
 
                 // Trigger RemoveShip event for the removed ship
                 RemoveShip?.Invoke(ship);
@@ -118,13 +123,13 @@ namespace ShipGame
                     }
 
                     ships.Insert(shipIndex, newShip); // Maintain order!
-                    gameCanvas.Children.Add(newShip.Shape);
+                    DrawShip(newShip);
                 }
             }
-            // 🔹 Update the Label UI with new points
-            livesLabel.Content = $"Lives: {lives}";
-            pointsLabel.Content = $"Points: {points}";
+            UpdateUI();
         }
+
+        
 
         private void SpawnNewShip(int shipIndex, BezierPath path)
         {
@@ -146,11 +151,11 @@ namespace ShipGame
             }
             else
             {
-                ships.Add(newShip); // Add the new ship if it's the first spawn
+                AddShip(newShip); // Add the new ship if it's the first spawn
             }
 
             // Ensure that the new ship is added to the canvas and that its movement starts correctly
-            gameCanvas.Children.Add(newShip.Shape);
+            DrawShip(newShip);
             newShip.MoveAlongPath();  // Ensure the ship starts moving immediately
         }
 
