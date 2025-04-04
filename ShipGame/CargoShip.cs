@@ -7,7 +7,7 @@ using System.Windows.Media;
 
 namespace ShipGame
 {
-    class CargoShip : Ship
+    public class CargoShip : Ship
     {
         public override string ShipType => "Cargo Ship";
         public CargoShip(double speed, Brush color, double size, BezierPath path)
